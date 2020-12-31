@@ -1,0 +1,17 @@
+<mat-card class="container justify-content-center">
+    <mat-card-header class="col-10">
+        <div class="mat-card-avatar">
+            <mat-card-title>{{product.name}}</mat-card-title>
+        </div>
+    </mat-card-header>
+    <img [src]="product.imageUrl" [alt]="product.description" class="col-10 full-width">
+    <mat-card-content>
+        <p> {{ product.description }} </p>
+        <p> Get it now <strong class="very">ON SALE</strong> only for <strong>${{product.price}}</strong></p>
+        <mat-divider></mat-divider>
+        <div class="row justify-content-center">
+            <button mat-raised-button color="primary" class="col-5">Order Now!!</button>
+            <button mat-flat-button color="accent" class="col-5">Add To Cart</button>
+        </div>
+    </mat-card-content>
+</mat-card>

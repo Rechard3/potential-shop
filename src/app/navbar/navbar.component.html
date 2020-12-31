@@ -1,0 +1,7 @@
+<div class="col-12">
+  <nav mat-tab-nav-bar>
+    <a mat-tab-link *ngFor="let tab of tabs" [routerLink]="tab.path">
+      {{ tab.displayName }}
+    </a>
+  </nav>
+</div>

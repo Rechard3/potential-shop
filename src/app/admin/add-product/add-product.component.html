@@ -1,0 +1,37 @@
+<div class="container">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <mat-form-field class="col-6">
+      <mat-label>Product Title</mat-label>
+      <input matInput formControlName="name" type="text" required />
+    </mat-form-field>
+    <mat-form-field class="col-6">
+      <mat-label>Image Url</mat-label>
+      <input matInput formControlName="imageUrl" type="text" />
+    </mat-form-field>
+    <mat-form-field class="col-6">
+      <mat-label>price</mat-label>
+      <input
+        matInput
+        formControlName="price"
+        type="number"
+        required
+        minlength="3"
+      />
+    </mat-form-field>
+    <mat-form-field class="col-12">
+      <mat-label>Description</mat-label>
+      <input matInput formControlName="description" type="text" />
+    </mat-form-field>
+    <div class="col-6">
+      <button mat-raised-button class="col-6 m-2" color="primary" [disabled]="!form.valid">Submit</button>
+      <button
+        mat-raised-button
+        class="col-6 m-2"
+        color="accent"
+        routerLink="/admin"
+      >
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

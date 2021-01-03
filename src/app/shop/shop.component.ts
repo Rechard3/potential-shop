@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Select, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
 import { Product } from '../models/product';
+import { ShopActions } from "./store/shop.actions";
+import { ShopState } from './store/shop.state';
 
 @Component({
   selector: 'app-shop',
@@ -7,38 +11,11 @@ import { Product } from '../models/product';
   styleUrls: ['./shop.component.scss'],
 })
 export class ShopComponent implements OnInit {
-  products: Product[] = [
-    {
-      name: 'scooter',
-      description:
-        'Let your kids love you, bring them this amazing toy, full of fun and excercise',
-      imageUrl: '/assets/img/scooter.jpeg',
-      price: 25,
-    },
-    {
-      name: 'scooter',
-      description:
-        'Let your kids love you, bring them this amazing toy, full of fun and excercise',
-      imageUrl: '/assets/img/scooter.jpeg',
-      price: 25,
-    },
-    {
-      name: 'scooter',
-      description:
-        'Let your kids love you, bring them this amazing toy, full of fun and excercise',
-      imageUrl: '/assets/img/scooter.jpeg',
-      price: 25,
-    },
-    {
-      name: 'scooter',
-      description:
-        'Let your kids love you, bring them this amazing toy, full of fun and excercise',
-      imageUrl: '/assets/img/scooter.jpeg',
-      price: 25,
-    },
-  ];
+  @Select(ShopState.productsList) products: Observable<Product[]>;
 
-  constructor() {}
+  constructor(private store: Store) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.store.dispatch(new ShopActions.FetchProducts());
+  }
 }

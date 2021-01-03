@@ -1,0 +1,13 @@
+.full-height{
+    height: 90vh;
+}
+
+mat-sidenav.list-no-style{
+    & ul li{
+        list-style: none;
+    }
+}
+
+.active{
+    background-color: #ccc;
+}

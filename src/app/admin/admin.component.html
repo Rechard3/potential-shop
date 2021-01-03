@@ -1,0 +1,19 @@
+<mat-sidenav-container class="full-height">
+  <mat-sidenav
+    mode="push"
+    [(opened)]="drawerOpened"
+    class="col-3 list-no-style"
+  >
+    <mat-list role="list">
+      <a routerLinkActive="active" mat-list-item *ngFor="let item of navItems" [routerLink]="item.link">{{
+        item.name
+      }}</a>
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <button mat-button (click)="drawerOpened = !drawerOpened" *ngIf="!drawerOpened">
+      <span class="material-icons">list</span>
+    </button>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

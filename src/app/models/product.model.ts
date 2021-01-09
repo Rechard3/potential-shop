@@ -1,4 +1,6 @@
 export interface Product {
+    /** the internal primary key of the product document */
+    _id: string;
     /** text description of the product */
     description: string;
     /** name of the product */

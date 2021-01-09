@@ -1,30 +1,42 @@
-<mat-card fxLayout="col">
-  <mat-card-header class="col-10" style="height: 5rem;">
+<mat-card fxLayout="column" fxFlex="100%" fxLayoutGap="20px">
+  <mat-card-header fxFlex="10%" style="height: 5rem">
     <div class="mat-card-avatar">
       <mat-card-title class="height-fit-content">{{
         product.name
       }}</mat-card-title>
     </div>
   </mat-card-header>
-  <img
-    [src]="product.imageUrl"
-    [alt]="product.description"
-    width="30"
-    height="120"
-    class="col-10"
-  />
-  <mat-card-content class="d-flex flex-column align-items-start">
-    <p>{{ product.description }}</p>
-    <p>
+  <div fxFlex="40%">
+    <img
+      fxFlex="100% 100%"
+      [src]="product.imageUrl"
+      [alt]="product.description"
+      class="col-10"
+    />
+  </div>
+  <mat-card-content fxLayout="column" fxLayoutGap="5%" fxFlex="grow">
+    <p fxFlex>{{ product.description }}</p>
+    <p fxFlex>
       Get it now <strong class="very">ON SALE</strong> only for
       <strong>${{ product.price }}</strong>
     </p>
-    <mat-divider></mat-divider>
-    <div class="d-flex align-self-end justify-content-center">
-      <button mat-raised-button color="primary" class="col-5 float-end">
-        Order Now!!
+    <mat-divider fxFlex></mat-divider>
+    <div fxLayout="row" fxLayoutGap="10px">
+      <button mat-raised-button color="primary" fxFlexAlign="end">Order</button>
+      <button mat-flat-button color="accent" fxFlexAlign="end">cart</button>
+      <button mat-flat-button color="basic"  *ngxPermissionsOnly="extraActionsRoles" [matMenuTriggerFor]="menu">
+        <span class="material-icons">more_horiz</span>
       </button>
-      <button mat-flat-button color="accent" class="col-5">Add To Cart</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="updateProduct()">
+          <mat-icon>edit</mat-icon>
+          edit
+        </button>
+        <button mat-menu-item (click)="removeProduct(product)">
+          <mat-icon>delete</mat-icon>
+          delete
+        </button>
+      </mat-menu>
     </div>
   </mat-card-content>
 </mat-card>

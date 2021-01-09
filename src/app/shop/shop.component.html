@@ -1,9 +1,10 @@
 <div class="container">
-  <div class="row">
+  <div class="row" fxLayout="row">
     <app-product-card
       *ngFor="let product of (products | async)"
       [product]="product"
       class="col-md-3 col-sm-6"
+      fxLayout="column" fxFlex="20% 100%"
     ></app-product-card>
   </div>
 </div>

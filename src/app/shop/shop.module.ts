@@ -4,8 +4,8 @@ import { ShopComponent } from './shop.component';
 import { ShopRoutingModule } from './shop-routing.module';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { CoreModule } from '../core/core.module';
-import { StoreModule } from './store/store.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NgxPermissionsModule } from 'ngx-permissions';
 
 
 @NgModule({
@@ -14,8 +14,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     CommonModule,
     ShopRoutingModule,
     CoreModule,
-    StoreModule,
     FlexLayoutModule,
+    NgxPermissionsModule.forChild(),
   ],
 })
 export class ShopModule { }

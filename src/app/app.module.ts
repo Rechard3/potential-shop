@@ -10,6 +10,13 @@ import { NgxsModule } from '@ngxs/store';
 import { environment } from 'src/environments/environment';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { HttpClientModule } from '@angular/common/http';
+import { ShopState } from './shop/store/shop.state';
+import { AdminState } from './admin/store/admin.state';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormlyMaterialModule } from '@ngx-formly/material';
+import { NgxPermissionsModule } from 'ngx-permissions';
+import { AuthState } from './auth/store/auth.state';
+import { AgGridModule } from "ag-grid-angular";
 
 @NgModule({
   declarations: [
@@ -22,10 +29,14 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     CoreModule,
     HttpClientModule,
-    NgxsModule.forRoot([], {
+    NgxsModule.forRoot([ShopState, AdminState, AuthState], {
       developmentMode: !environment.production,
     }),
     NgxsReduxDevtoolsPluginModule.forRoot({disabled: environment.production}),
+    ReactiveFormsModule,
+    FormlyMaterialModule,
+    NgxPermissionsModule.forRoot(),
+    AgGridModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

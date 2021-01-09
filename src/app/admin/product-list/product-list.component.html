@@ -1,0 +1,7 @@
+<div class="col-12" style="height: 80%">
+  <ag-grid-angular
+    class="ag-theme-alpine col-6 fill-parent"
+    [gridOptions]="gridDef.options"
+    [rowData]="products | async"
+  ></ag-grid-angular>
+</div>

@@ -9,8 +9,9 @@ export class AdminComponent implements OnInit {
   drawerOpened = false;
 
   navItems = [
-    {name: "Add Product", link: ["add-product"]},
-    {name: "Update Product", link: ["update-product"]},
+    {name: "Add Product", link: ["/admin", "add-product"]},
+    {name: "Update Product", link: ["/admin", "update-product"]},
+    {name: "Products list", link: ["/admin", "products-list"]},
   ]
 
   constructor() { }

@@ -1,0 +1,17 @@
+<form class="container">
+  <formly-form
+  class="row"
+    [fields]="formDef.fields"
+    [model]="model"
+    [form]="form"
+  ></formly-form>
+
+  <div class="col-8">
+    <button class="col-4 m-2" mat-raised-button color="primary" (click)="submit()" type="button">
+      Update
+    </button>
+    <button class="col-4 m-2" mat-raised-button color="accent" routerLink="/admin" type="button">
+      cancel
+    </button>
+  </div>
+</form>

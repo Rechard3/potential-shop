@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { User } from 'src/app/models/user.model';
 import { AuthActions as actions } from './auth.actions';
@@ -26,6 +27,7 @@ type Ctx = StateContext<AuthStateModel>;
   name: 'auth',
   defaults: defaultState,
 })
+@Injectable()
 export class AuthState {
 
   @Selector()

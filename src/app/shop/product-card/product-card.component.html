@@ -1,30 +1,34 @@
 <mat-card fxLayout="column" fxFlex="100%" fxLayoutGap="20px">
-  <mat-card-header fxFlex="10%" style="height: 5rem">
-    <div class="mat-card-avatar">
-      <mat-card-title class="height-fit-content">{{
+  <mat-card-header fxFlex="10%" style="height: 5rem" class="row">
+    <div class="col-12">
+      <mat-card-title class="col-12 height-fit-content">{{
         product.name
       }}</mat-card-title>
     </div>
   </mat-card-header>
-  <div fxFlex="40%">
-    <img
-      fxFlex="100% 100%"
-      [src]="product.imageUrl"
-      [alt]="product.description"
-      class="col-10"
-    />
-  </div>
-  <mat-card-content fxLayout="column" fxLayoutGap="5%" fxFlex="grow">
-    <p fxFlex>{{ product.description }}</p>
+  <mat-card-content id="card-content" fxLayout="column" fxLayoutGap="5%">
+    <div class="img-container row align-middle justify-content-center">
+      <img [src]="product.imageUrl" [alt]="product.description" />
+      <div class="img-overlay row align-items-center">
+        <p>
+          {{ product.description }}
+        </p>
+      </div>
+    </div>
     <p fxFlex>
       Get it now <strong class="very">ON SALE</strong> only for
       <strong>${{ product.price }}</strong>
     </p>
-    <mat-divider fxFlex></mat-divider>
-    <div fxLayout="row" fxLayoutGap="10px">
-      <button mat-raised-button color="primary" fxFlexAlign="end">Order</button>
-      <button mat-flat-button color="accent" fxFlexAlign="end">cart</button>
-      <button mat-flat-button color="basic"  *ngxPermissionsOnly="extraActionsRoles" [matMenuTriggerFor]="menu">
+    <div fxLayout="column" fxLayoutGap="10px" class="justify-content-center">
+      <button mat-raised-button color="primary" class="col-12">Order</button>
+      <button mat-flat-button color="accent" class="col-12">cart</button>
+      <button
+        mat-flat-button
+        color="basic"
+        class="col-6"
+        *ngxPermissionsOnly="extraActionsRoles"
+        [matMenuTriggerFor]="menu"
+      >
         <span class="material-icons">more_horiz</span>
       </button>
       <mat-menu #menu="matMenu">

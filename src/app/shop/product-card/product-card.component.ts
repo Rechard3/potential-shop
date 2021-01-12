@@ -30,4 +30,8 @@ export class ProductCardComponent implements OnInit {
         this.router.navigateByUrl('/admin/update-product');
       });
   }
+
+  addToCart() {
+    this.store.dispatch(new ShopActions.AddProductToCart(this.product));
+  }
 }

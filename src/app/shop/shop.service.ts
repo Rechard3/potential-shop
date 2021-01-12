@@ -4,6 +4,8 @@ import { HttpClient, HttpResponseBase } from '@angular/common/http';
 import { Api } from '../core/api';
 import { catchError, map } from 'rxjs/operators';
 import { Product } from '../models/product.model';
+import { ld } from '../core/utils/lodash.exports';
+import produce from 'immer';
 
 @Injectable({
   providedIn: 'root',
@@ -25,5 +27,14 @@ export class ShopService {
           throw err;
         }
       }));
+  }
+
+
+  fetchCart(){
+    return this.http.get(Api.cartList);
+  }
+
+  addProductToCart(product: Product){
+    return this.http.post(Api.cartAddProduct, {id: product['_id']});
   }
 }

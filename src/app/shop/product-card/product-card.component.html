@@ -21,7 +21,14 @@
     </p>
     <div fxLayout="column" fxLayoutGap="10px" class="justify-content-center">
       <button mat-raised-button color="primary" class="col-12">Order</button>
-      <button mat-flat-button color="accent" class="col-12">cart</button>
+      <button
+        mat-flat-button
+        color="accent"
+        class="col-12"
+        (click)="addToCart()"
+      >
+        cart
+      </button>
       <button
         mat-flat-button
         color="basic"

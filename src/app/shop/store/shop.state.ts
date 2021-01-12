@@ -8,10 +8,12 @@ import { Product } from 'src/app/models/product.model';
 
 export interface ShopStateModel {
   products: Product[];
+  cart: (Product & { quantity: number })[];
 }
 
 const defaultState: ShopStateModel = {
   products: [],
+  cart: [],
 };
 
 type Ctx = StateContext<ShopStateModel>;
@@ -30,6 +32,14 @@ export class ShopState {
   @Selector()
   static productsList(state: ShopStateModel) {
     return state.products;
+  }
+
+  @Selector()
+  static cart(state: ShopStateModel) {
+    return (state.cart || []).map((item) => ({
+      ...item,
+      total: item['price'] * item['quantity'],
+    }));
   }
 
   @Action(actions.FetchProducts)
@@ -58,12 +68,44 @@ export class ShopState {
   }
 
   @Action(actions.UpdateProduct)
-  updateProduct(ctx: Ctx, {payload}: actions.UpdateProduct){
+  updateProduct(ctx: Ctx, { payload }: actions.UpdateProduct) {
     const products = ctx.getState().products;
-    const targetIdx = products.findIndex(p=>p._id==payload._id);
-    ctx.setState(produce(ctx.getState(), state=>{
-      if(targetIdx) state.products[targetIdx] = payload;
-      else state.products.push(payload);
-    }));
+    const targetIdx = products.findIndex((p) => p._id == payload._id);
+    ctx.setState(
+      produce(ctx.getState(), (state) => {
+        if (targetIdx) state.products[targetIdx] = payload;
+        else state.products.push(payload);
+      })
+    );
+  }
+
+  @Action(actions.FetchCart)
+  fetchCart(ctx: Ctx) {
+    return this.shop.fetchCart().pipe(
+      tap((cart: any) => {
+        ctx.setState(
+          produce(ctx.getState(), (state) => {
+            state.cart = cart;
+          })
+        );
+      })
+    );
+  }
+
+  @Action(actions.AddProductToCart)
+  addProductToCart(
+    { setState, getState }: Ctx,
+    { payload }: actions.AddProductToCart
+  ) {
+    return this.shop.addProductToCart(payload).pipe(
+      tap((resp) => {
+        console.log('product added to cart');
+      })
+    );
+  }
+
+  @Action(actions.RemoveProductFromCart)
+  removeProductFromCart({}: Ctx, {product, quantity}: actions.RemoveProductFromCart){
+    console.log(`removing ${quantity} of ${product.name} from cart`);
   }
 }

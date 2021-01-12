@@ -52,7 +52,7 @@ div.img-container{
     }
 
     & p::after {
-        content: "this should be after";
+        // content: "this should be after";
         background-color: linear-gradient(white , transparent);
     }
 

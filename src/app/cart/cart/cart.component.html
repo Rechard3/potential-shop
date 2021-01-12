@@ -1,0 +1,6 @@
+    <ag-grid-angular
+      class="ag-theme-material col-12"
+      [gridOptions]="gridDef.gridOptions"
+      [rowData]="cartItems | async"
+      [pinnedBottomRowData]="bottomRow | async"
+    ></ag-grid-angular>

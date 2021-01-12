@@ -1,4 +1,4 @@
-import {assign, set, isArray, clone, cloneDeep} from "lodash";
+import {assign, set, isArray, clone, cloneDeep, pick, isBoolean, isFunction} from "lodash";
 
 export const ld = {
     assign,
@@ -6,4 +6,7 @@ export const ld = {
     isArray,
     clone,
     cloneDeep,
+    pick,
+    isBoolean,
+    isFunction
 }

@@ -56,7 +56,6 @@ export class GridButtonComponent implements OnInit, ICellRendererAngularComp {
     this.params = agParams.params;
     this.agParams = agParams;
 
-    debugger;
     if (this.params.precalcHidden) {
       this.precalcHidden = this.params.precalcHidden;
     }

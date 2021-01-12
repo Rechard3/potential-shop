@@ -5,6 +5,7 @@ import {
   GridButtonComponent,
   GridButtonParams,
 } from 'src/app/core/grid/grid-button/grid-button.component';
+import { LoadingOverlayComponent } from 'src/app/core/grid/loading-overlay/loading-overlay.component';
 import { Product } from 'src/app/models/product.model';
 import { ShopActions } from 'src/app/shop/store/shop.actions';
 
@@ -66,6 +67,11 @@ export class CartGridService {
       this.columns.decreaseProductQuantity(),
       this.columns.removeProductStack(),
     ],
+    suppressNoRowsOverlay: true,
+    frameworkComponents: {
+      loading: LoadingOverlayComponent,
+    },
+    loadingOverlayComponent: 'loading',
     onGridReady(evt) {
       evt.api.setDomLayout('autoHeight');
     },

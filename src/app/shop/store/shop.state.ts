@@ -36,7 +36,10 @@ export class ShopState {
 
   @Selector()
   static cart(state: ShopStateModel) {
-    return (state.cart || []).map((item) => ({
+    if (!state.cart) {
+      return null;
+    }
+    return state.cart.map((item) => ({
       ...item,
       total: item['price'] * item['quantity'],
     }));
@@ -94,18 +97,39 @@ export class ShopState {
 
   @Action(actions.AddProductToCart)
   addProductToCart(
-    { setState, getState }: Ctx,
+    { setState, getState, dispatch }: Ctx,
     { payload }: actions.AddProductToCart
   ) {
+    // clear the cart items so that ag-grid displays a loading overlay
+    setState(
+      produce(getState(), (state) => {
+        state.cart = null;
+        return state;
+      })
+    );
     return this.shop.addProductToCart(payload).pipe(
       tap((resp) => {
-        console.log('product added to cart');
+        dispatch(new actions.FetchCart());
       })
     );
   }
 
   @Action(actions.RemoveProductFromCart)
-  removeProductFromCart({}: Ctx, {product, quantity}: actions.RemoveProductFromCart){
-    console.log(`removing ${quantity} of ${product.name} from cart`);
+  removeProductFromCart(
+    { setState, getState, dispatch }: Ctx,
+    { product, quantity }: actions.RemoveProductFromCart
+  ) {
+    // clear the cart items so that ag-grid displays a loading overlay
+    setState(
+      produce(getState(), (state) => {
+        state.cart = undefined;
+        return state;
+      })
+    );
+    return this.shop.removeProductFromCart(product, quantity).pipe(
+      tap((resp) => {
+        dispatch(new actions.FetchCart());
+      })
+    );
   }
 }

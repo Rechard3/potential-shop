@@ -20,14 +20,14 @@
       <strong>${{ product.price }}</strong>
     </p>
     <div fxLayout="column" fxLayoutGap="10px" class="justify-content-center">
-      <button mat-raised-button color="primary" class="col-12">Order</button>
       <button
         mat-flat-button
-        color="accent"
+        color="primary"
         class="col-12"
         (click)="addToCart()"
       >
-        cart
+        <mat-icon class="material-icons">add_circle</mat-icon>
+        add to cart
       </button>
       <button
         mat-flat-button

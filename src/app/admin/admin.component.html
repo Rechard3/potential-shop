@@ -1,17 +1,28 @@
-<mat-sidenav-container class="full-height">
+<mat-sidenav-container class="container full-height col-12">
   <mat-sidenav
-    mode="push"
+    mode="side"
     [(opened)]="drawerOpened"
-    class="col-3 list-no-style"
+    #sidenav="matSidenav"
+    class="col-md-4 col-sm-2 col-xs-1 list-no-style"
   >
+    <!-- [(opened)]="drawerOpened" -->
     <mat-list role="list">
-      <a routerLinkActive="active" mat-list-item *ngFor="let item of navItems" [routerLink]="item.link">{{
-        item.name
-      }}</a>
+      <a
+        routerLinkActive="active"
+        mat-list-item
+        *ngFor="let item of navItems"
+        [routerLink]="item.link"
+        >{{ item.name }}</a
+      >
     </mat-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <button mat-button (click)="drawerOpened = !drawerOpened" *ngIf="!drawerOpened">
+    <button
+      [fxShow.lt-md]=""
+      mat-button
+      (click)="drawerOpened = !drawerOpened"
+      *ngIf="!drawerOpened"
+    >
       <span class="material-icons">list</span>
     </button>
     <router-outlet></router-outlet>

@@ -7,5 +7,8 @@ export class ProductsListGrid {
       { headerName: 'Product', field: 'name' as keyof Product },
       { field: 'price' as keyof Product, headerName: '$$$' },
     ],
+    onGridReady(evt){
+      evt.api.setDomLayout('autoHeight')
+    }
   };
 }

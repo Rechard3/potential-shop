@@ -9,6 +9,7 @@ import { ProductForm } from './forms/product-form';
 import { FormsModule } from '../core/forms/forms.module';
 import { ProductListComponent } from './product-list/product-list.component';
 import { AgGridModule } from 'ag-grid-angular';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { AgGridModule } from 'ag-grid-angular';
     ProductListComponent,
   ],
   imports: [
+    FlexLayoutModule,
     CommonModule,
     AdminRoutingModule,
     CoreModule,

@@ -45,4 +45,13 @@ export class ShopService {
   removeProductFromCart(product: Product, quantity: number){
     return this.http.post(Api.cartRemoveProduct, {id: product._id, quantity});
   }
+
+  /** send a request to confirm buying the current cart */
+  confirmCartOrder(){
+    return this.http.post(Api.orderCart, {});
+  }
+
+   fetchAllOrders(){
+     return this.http.get(Api.orderFetchAll);
+   }
 }

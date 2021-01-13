@@ -9,4 +9,7 @@ export class Api {
     static cartList = [environment.server, "cart"].join("/");
     static cartAddProduct = [environment.server, "cart", "add-product"].join("/");
     static cartRemoveProduct = [environment.server, "cart", "remove-product"].join("/");
+
+    static orderCart = [environment.server, "order", "confirm"].join("/");
+    static orderFetchAll = [environment.server, "order", "history"].join("/");
 }

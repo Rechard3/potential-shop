@@ -4,6 +4,7 @@ import { CartComponent } from './cart/cart.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { CartRoutingModule } from "./cart-routing.module";
 import { GridModule } from '../core/grid/grid.module';
+import { MaterialModule } from '../core/material/material.module';
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import { GridModule } from '../core/grid/grid.module';
     CartRoutingModule,
     CommonModule,
     GridModule,
+    MaterialModule,
   ]
 })
 export class CartModule { }

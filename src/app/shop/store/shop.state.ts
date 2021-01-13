@@ -5,15 +5,21 @@ import { catchError, switchMap, tap } from 'rxjs/operators';
 import { produce } from 'immer';
 import { Injectable } from '@angular/core';
 import { Product } from 'src/app/models/product.model';
+import { Order } from 'src/app/models/order.model';
 
 export interface ShopStateModel {
+  /** list of all products available in the shop */
   products: Product[];
+  /** the current user cart */
   cart: (Product & { quantity: number })[];
+  /** the history of user orders, sorted reverse-chronologically */
+  orders: Order[];
 }
 
 const defaultState: ShopStateModel = {
-  products: [],
-  cart: [],
+  products: null,
+  cart: null,
+  orders: null,
 };
 
 type Ctx = StateContext<ShopStateModel>;
@@ -35,7 +41,7 @@ export class ShopState {
   }
 
   @Selector()
-  static cart(state: ShopStateModel) {
+  static selectedOrder(state: ShopStateModel) {
     if (!state.cart) {
       return null;
     }
@@ -43,6 +49,28 @@ export class ShopState {
       ...item,
       total: item['price'] * item['quantity'],
     }));
+  }
+
+  @Selector()
+  static orders(state: ShopStateModel) {
+    const currentCartAsOrder = {
+      items: state.cart,
+      timestamp: new Date(),
+      user: null,
+    };
+    try {
+      return [
+        currentCartAsOrder,
+        ...[...(state.orders||[])].sort(
+          (a, b) =>
+            a.timestamp.getMilliseconds() -
+            b.timestamp.getMilliseconds()
+        ),
+      ];
+    } catch (err) {
+      console.error(err);
+      return [];
+    }
   }
 
   @Action(actions.FetchProducts)
@@ -129,6 +157,30 @@ export class ShopState {
     return this.shop.removeProductFromCart(product, quantity).pipe(
       tap((resp) => {
         dispatch(new actions.FetchCart());
+      })
+    );
+  }
+
+  @Action(actions.OrderCart)
+  orderCart(ctx: Ctx) {
+    return this.shop.confirmCartOrder().pipe(
+      tap((resp) => {
+        ctx.dispatch(new actions.FetchCart());
+      })
+    );
+  }
+
+  @Action(actions.FetchOrders)
+  fetchOrders(ctx: Ctx) {
+    return this.shop.fetchAllOrders().pipe(
+      tap((orders:Order[]) => {
+        const stateOrders = orders.map(order=>({...order, timestamp: new Date(order.timestamp)}));
+        ctx.setState(
+          produce(ctx.getState(), (state) => {
+            state.orders = stateOrders;
+            return state;
+          })
+        );
       })
     );
   }

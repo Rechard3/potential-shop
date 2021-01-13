@@ -4,13 +4,13 @@ import { Product } from "src/app/models/product.model";
 export namespace ShopActions{
     /** fetch the list of products from the backend */
     export class FetchProducts{
-        static readonly type="[Product INIT] Fetch/List";
+        static readonly type="[SHOP REFRESH] Fetch/List";
     }
 
 
     /** remove a product from the backend */
     export class RemoveProduct{
-        static readonly type="[Product UI] Remove Product";
+        static readonly type="[SHOP ADMIN] Remove Product";
         constructor(public payload: Product) {
         }
     }
@@ -29,7 +29,7 @@ export namespace ShopActions{
 
     /** add a product to the list of cart items */
     export class AddProductToCart{
-        static readonly type="[SHOP UI] add product to cart";
+        static readonly type="[SHOP CART] add product to cart";
         
         constructor(public payload: Product) {
         }
@@ -38,12 +38,23 @@ export namespace ShopActions{
     /** remove a quantity of some product from the cart
     */
     export class RemoveProductFromCart{
-        static readonly type="[CART GRID] remove product";
+        static readonly type="[SHOP CART] remove product";
         /** 
          * @param product the product to be removed
          * @param quantity how many instances to remove
          */
         constructor(public product: Product, public quantity: number) {
         }
+    }
+
+
+    /** order the current cart items */
+    export class OrderCart{
+        static readonly type="[SHOP ORDERS] confirm cart";
+    }
+
+    /** retrieve the history of orders made by this user */
+    export class FetchOrders{
+        static readonly type="[SHOP ORDERS] fetch order history";
     }
 }

@@ -1,6 +1,32 @@
+<div class="container">
+  <div class="row my-2 col-12">
     <ag-grid-angular
-      class="ag-theme-material col-12"
+      class="ag-theme-material col-md-6 col-lg-6 col-sm-12 col-xs-12"
       [gridOptions]="gridDef.gridOptions"
       [rowData]="cartItems | async"
       [pinnedBottomRowData]="bottomRow | async"
     ></ag-grid-angular>
+    <mat-card class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+      <mat-selection-list [multiple]="false">
+        <mat-list-option *ngFor="let order of orders | async">
+          <p>
+            <b>${{ getOrderCost(order) }}</b> on {{ order.timestamp | date:'short' }}
+          </p>
+           </mat-list-option
+        >
+      </mat-selection-list>
+    </mat-card>
+  </div>
+  <div
+    class="row col-md-6 col-lg-6 col-sm-12 col-xs-12 justify-content-center my-2"
+  >
+    <button
+      mat-raised-button
+      color="primary"
+      class="col-6"
+      (click)="purchaseCart()"
+    >
+      Confirm Order
+    </button>
+  </div>
+</div>

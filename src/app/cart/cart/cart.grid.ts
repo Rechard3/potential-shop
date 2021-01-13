@@ -74,6 +74,7 @@ export class CartGridService {
     loadingOverlayComponent: 'loading',
     onGridReady(evt) {
       evt.api.setDomLayout('autoHeight');
+      evt.api.sizeColumnsToFit();
     },
   };
 }

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Store } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { NgxPermissionsService } from 'ngx-permissions';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { AuthActions } from './auth/store/auth.actions';
-import { AuthState } from './auth/store/auth.state';
+import { AuthState, AuthStateModel } from './auth/store/auth.state';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
 
   activePath = "";
   subscriptions = new Subscription();
+  @Select(AuthState) auth: Observable<AuthStateModel>;
 
   /**
    *

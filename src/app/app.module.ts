@@ -19,13 +19,16 @@ import { AuthState } from './auth/store/auth.state';
 import { AgGridModule } from "ag-grid-angular";
 import { AuthorInfoComponent } from './author-info/author-info.component';
 import { AboutComponent } from './about/about.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     AuthorInfoComponent,
-    AboutComponent
+    AboutComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +42,7 @@ import { AboutComponent } from './about/about.component';
     NgxsReduxDevtoolsPluginModule.forRoot({disabled: environment.production}),
     ReactiveFormsModule,
     FormlyMaterialModule,
+    FlexLayoutModule,
     NgxPermissionsModule.forRoot(),
     AgGridModule.forRoot(),
   ],

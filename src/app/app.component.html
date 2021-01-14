@@ -1,7 +1,31 @@
 <header id="navbar-header">
-  <nav class="navbar navbar-expand fixed-top bg-light">
-    <a class="navbar-brand" routerLink="/">Shoply</a>
-    <app-navbar></app-navbar>
+  <nav mat-tab-nav-bar class="navbar navbar-expand fixed-top bg-light">
+    <!-- <a class="navbar-brand" routerLink="/">Shoply</a> -->
+    <app-navbar class="col-6"></app-navbar>
+    <!-- <nav  fxLayout="row" fxFlexAlign="end"> -->
+    <a
+      mat-tab-link
+      routerLinkActive
+      #rlaLogin="routerLinkActive"
+      [active]="rlaLogin.isActive"
+      routerLink="/auth/login"
+      class="col-1 offset-3"
+      *ngIf="!(auth | async).authenticated"
+      >Login</a
+    >
+    <!-- [ngClass]="{ active: rlaLogin.isActive }" -->
+    <a
+      mat-tab-link
+      #rlaSignup="routerLinkActive"
+      routerLinkActive
+      routerLink="/auth/signup"
+      [active]="rlaSignup.isActive"
+      class="col-1"
+      *ngIf="!(auth | async).authenticated"
+      >Signup</a
+    >
+
+    <!-- </nav> -->
   </nav>
 </header>
 
@@ -14,31 +38,5 @@
 </div>
 
 <footer class="footer mt-6">
-  <div class="container-xl">
-    <div class="d-flex flex-wrap py-5 mb-5">
-      <div class="col-12 col-lg-4">
-        <small class="row" style="word-wrap: break-word">
-          <div id="copyright-top">
-            <div id="copyright">
-              <strong color="primary">Shoply</strong>
-              Copyright (C) 2021 Omar Abu Saada
-            </div>
-          </div>
-          <p>
-            This program comes with ABSOLUTELY NO WARRANTY;
-            <br />
-            This is free software, and you are welcome to redistribute it under
-            certain conditions <br>
-            <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">Licensed under GNU GPLv3+</a>
-          </p>
-        </small>
-      </div>
-      <div class="col-6 col-sm-3 col-lg-2 mb-6 mb-md-2 pr-3 pr-lg-0 pl-lg-4">
-        <ul class="list-unstyled f-5">
-          <li class="lh-condensed mb-3"><a routerLink="/author" class="mb-3">The Author</a></li>
-          <li class="lh-condensed mb-3"><a routerLink="/about" class="mb-3">About Shoply</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  <app-footer></app-footer>
 </footer>

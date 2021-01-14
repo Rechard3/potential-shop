@@ -1,0 +1,12 @@
+<mat-card class="container">
+    <form class="col-12">
+        <formly-form
+        [fields]="formDef.fields"
+        [form]="form"
+        [model]="model"
+        ></formly-form>
+    </form>
+    <div class="col-12">
+        <p> form is {{form.status}}</p>
+    </div>
+</mat-card>

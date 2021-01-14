@@ -1,5 +1,13 @@
-import { FormlyFieldConfig } from "@ngx-formly/core";
+import { AbstractControl, FormControl, ValidatorFn } from "@angular/forms";
+import { FormlyField, FormlyFieldConfig } from "@ngx-formly/core";
+import { Observable } from "rxjs";
 import { ld } from "../../utils/lodash.exports";
+
+
+interface FormlyInlineValidator{
+    expression: (control: AbstractControl, field: FormlyFieldConfig) => boolean;
+    message: (error, field: FormlyFieldConfig)=>string | Promise<string> | Observable<string>;
+}
 
 export class BaseField {
     config: FormlyFieldConfig = {};
@@ -27,5 +35,18 @@ export class BaseField {
 
     value(){
         return ld.cloneDeep(this.config);
+    }
+
+    /** adds "validators" to the list of field sync validators */
+    validate(validators: {[key: string]: FormlyInlineValidator}){
+        // ld.assign(this.config.validators, validators);
+        ld.set(this, "config.validators", validators);
+        return this;
+    }
+
+    /** whether the field is required or not */
+    required(value: boolean = true){
+        ld.set(this.config.templateOptions, "required", value);
+        return this;
     }
 }

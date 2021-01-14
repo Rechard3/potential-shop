@@ -10,6 +10,7 @@ import { FieldTypes } from './fields/field-types.enum';
 
 const config: ConfigOption = {
   types: [{ name: FieldTypes.hidden, component: HiddenComponent }],
+  validationMessages: [{ name: 'required', message: 'this field is required' }],
 };
 
 @NgModule({
@@ -18,4 +19,3 @@ const config: ConfigOption = {
   exports: [FormlyModule, NgFormsModule, ReactiveFormsModule],
 })
 export class FormsModule {}
- 

@@ -1,64 +1,19 @@
 <div class="col-12">
   <nav mat-tab-nav-bar>
-    <a
-      mat-tab-link
-      *ngFor="let tab of tabs"
-      routerLinkActive
-      #rla="routerLinkActive"
-      [active]="rla.isActive"
-      [routerLink]="tab.path"
-    >
-      {{ tab.displayName }}
-    </a>
-    <!-- <router-outlet></router-outlet> -->
+    <!-- <mat-tab-group> -->
+      <a
+        mat-tab-link
+        *ngFor="let tab of tabs"
+        routerLinkActive
+        #rla="routerLinkActive"
+        [active]="rla.isActive"
+        [routerLink]="tab.path"
+      >
+        {{ tab.displayName }}
+      </a>
+    <!-- </mat-tab-group> -->
+    <mat-tab-group>
+      <a routerLink="/auth/signup">Singup</a>
+    </mat-tab-group>
   </nav>
 </div>
-
-<!-- <div class="col-12">
-  <mat-tab-group>
-    <mat-tab *ngFor="let tab of tabs">
-      <ng-template mat-tab-label
-        ><div class="col-12 m-0" [routerLink]="tab.path">
-          {{ tab.displayName }}
-        </div></ng-template
-      >
-      <ng-template matTabContent>
-        <router-outlet></router-outlet>
-      </ng-template>
-    </mat-tab>
-  </mat-tab-group>
-</div> -->
-
-<!-- 
-  <ng-container *ngIf="(asyncTabs | async) === null">
-  Loading tabs...
-</ng-container>
-
-<mat-tab-group>
-  <mat-tab *ngFor="let tab of asyncTabs | async">
-    <ng-template mat-tab-label>{{tab.label}}</ng-template>
-    {{tab.content}}
-  </mat-tab>
-</mat-tab-group>
- -->
-
- <!-- 
-   <mat-tab-group>
-  <mat-tab label="First">
-    <ng-template matTabContent>
-      Content 1 - Loaded: {{getTimeLoaded(1) | date:'medium'}}
-    </ng-template>
-  </mat-tab>
-  <mat-tab label="Second">
-    <ng-template matTabContent>
-      Content 2 - Loaded: {{getTimeLoaded(2) | date:'medium'}}
-    </ng-template>
-  </mat-tab>
-  <mat-tab label="Third">
-    <ng-template matTabContent>
-      Content 3 - Loaded: {{getTimeLoaded(3) | date:'medium'}}
-    </ng-template>
-  </mat-tab>
-</mat-tab-group>
-
-  -->

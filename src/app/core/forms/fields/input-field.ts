@@ -3,6 +3,8 @@ import { ld } from "../../utils/lodash.exports";
 import { BaseField } from "./base-field";
 import { FieldTypes } from "./field-types.enum";
 
+type InputType = "text" | "number" | "password" | "date" | "datetime";
+
 export class InputField extends BaseField{
     /**
      *
@@ -16,6 +18,12 @@ export class InputField extends BaseField{
     placeholder(text: string){
         // this.config.templateOptions.placeholder
         ld.set(this.config, "templateOptions.placeholder", text || "");
+        return this;
+    }
+
+    /** specify the type of this input field */
+    type(type: InputType){
+        ld.set(this.config, "templateOptions.type", type || "text");
         return this;
     }
 }

@@ -17,11 +17,15 @@ import { FormlyMaterialModule } from '@ngx-formly/material';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { AuthState } from './auth/store/auth.state';
 import { AgGridModule } from "ag-grid-angular";
+import { AuthorInfoComponent } from './author-info/author-info.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    AuthorInfoComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

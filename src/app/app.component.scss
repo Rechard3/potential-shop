@@ -1,0 +1,44 @@
+.d-flex{
+  display: flex!important;
+  & .lh-condensed{
+    line-height: 1.25!important;
+  }
+}
+
+#copyright-top {
+  width: 100%;
+  & #prog-name {
+    font-style: italic;
+    text-decoration: underline;
+    color: #942828;
+  }
+
+  & #copyright {
+    font-weight: bold;
+  }
+}
+
+#body{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    min-height: 80vh;
+    & .row{
+        padding: 1rem 2rem;
+    }
+}
+
+header#navbar-header{
+    top: 0;
+    height: 4rem;
+
+}
+
+[color=primary]{
+  color: #673ab7;
+}
+
+
+strong{
+  font-style: italic;
+  text-decoration: underline;
+}

@@ -1,14 +1,43 @@
-<div class="bg-dark">
-  <div class="row">
-    <nav class="navbar navbar-expand fixed-top bg-light">
-      <a class="navbar-brand" routerLink="/">Shoply</a>
-      <app-navbar></app-navbar>
-    </nav>
-  </div>
-  <div class="row m-5"></div>
+<header id="navbar-header">
+  <nav class="navbar navbar-expand fixed-top bg-light">
+    <a class="navbar-brand" routerLink="/">Shoply</a>
+    <app-navbar></app-navbar>
+  </nav>
+</header>
+
+<div id="body" class="bg-dark">
   <div class="row">
     <div class="col-12">
       <router-outlet></router-outlet>
     </div>
   </div>
 </div>
+
+<footer class="footer mt-6">
+  <div class="container-xl">
+    <div class="d-flex flex-wrap py-5 mb-5">
+      <div class="col-12 col-lg-4">
+        <small class="row" style="word-wrap: break-word">
+          <div id="copyright-top">
+            <div id="copyright">
+              <strong color="primary">Shoply</strong>
+              Copyright (C) 2021 Omar Abu Saada
+            </div>
+          </div>
+          <p>
+            This program comes with ABSOLUTELY NO WARRANTY;
+            <br />
+            This is free software, and you are welcome to redistribute it under
+            certain conditions
+          </p>
+        </small>
+      </div>
+      <div class="col-6 col-sm-3 col-lg-2 mb-6 mb-md-2 pr-3 pr-lg-0 pl-lg-4">
+        <ul class="list-style-none f-5">
+          <li class="lh-condensed mb-3"><a routerLink="/author" class="mb-3">The Author</a></li>
+          <li class="lh-condensed mb-3"><a routerLink="/about" class="mb-3">About Shoply</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>

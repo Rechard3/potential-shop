@@ -18,20 +18,34 @@ export class ProductForm {
   }
 
   readonly factory: { [key in keyof Product]: () => BaseField } = {
-    name: () => this.forms.field.input('name').class(['col-6']).label('Name').placeholder("type the name of the product"),
+    name: () =>
+      this.forms.field
+        .input('name')
+        .class(['col-6'])
+        .label('Name')
+        .placeholder('type the name of the product')
+        .required(true),
     _id: () => this.forms.field.hidden('_id'),
     description: () =>
       this.forms.field
         .input('description' as keyof Product)
         .class(['col-6'])
-        .label('Description').placeholder("sell the product, why should the customer buy it"),
+        .label('Description')
+        .placeholder('sell the product, why should the customer buy it')
+        .required(true),
     imageUrl: () =>
       this.forms.field
         .input('imageUrl' as keyof Product)
         .class(['col-6'])
         .label('Image Url')
-        .placeholder("url for the image to use as thumbnail of the product"),
+        .placeholder('url for the image to use as thumbnail of the product')
+        .required(true),
     price: () =>
-      this.forms.field.number('price').class(['col-6']).label('Price').placeholder("in USD"),
+      this.forms.field
+        .number('price')
+        .class(['col-6'])
+        .label('Price')
+        .placeholder('in USD')
+        .required(true),
   };
 }

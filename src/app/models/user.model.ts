@@ -8,7 +8,7 @@ export interface User {
 
   /** the password used by the user
    */
-  password?: string;
+  password: string;
 
   /** email address of the user
    */

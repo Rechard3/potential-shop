@@ -1,3 +1,4 @@
+import { User } from "src/app/models/user.model";
 
 
 export namespace AuthActions {
@@ -19,6 +20,16 @@ export namespace AuthActions {
          * @param payload the credentials to authenticate
          */
         constructor(public payload: {username: string, password: string}) {
+        }
+    }
+
+
+    export class SignupUser{
+        static readonly type="[AUTH SIGNUP] signup new user";
+        /**
+         *
+         */
+        constructor(public payload: User) {
         }
     }
 }

@@ -6,6 +6,7 @@ interface UserFormFields {
   username: unknown;
   password: unknown;
   confirmPassword: unknown;
+  email: unknown;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -16,13 +17,22 @@ export class UserForm {
         .input('username')
         .label('Username')
         .placeholder('enter your username here')
-        .required(),
+        .required(true),
+    email: () =>
+      this.forms.field
+        .input('email')
+        .label('email')
+        .placeholder('please type your email address in here')
+        .type('email')
+        .stdValidation(['email'])
+        .required(true),
     password: () =>
       this.forms.field
         .input('password')
         .label('password')
         .placeholder('enter your password')
-        .type('password'),
+        .type('password')
+        .required(true),
     confirmPassword: () =>
       this.forms.field
         .input('confirmPassword')
@@ -41,8 +51,9 @@ export class UserForm {
   };
   constructor(private forms: FormsService) {}
   fields = this.forms.evaluate([
-    this.factory.username(),
-    this.factory.password(),
-    this.factory.confirmPassword(),
+    this.factory.username().class(["col-6"]),
+    this.factory.password().class(["col-6"]),
+    this.factory.confirmPassword().class(["col-6"]),
+    this.factory.email().class(["col-6"]),
   ]);
 }

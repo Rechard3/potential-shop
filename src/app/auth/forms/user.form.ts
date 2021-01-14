@@ -51,9 +51,14 @@ export class UserForm {
   };
   constructor(private forms: FormsService) {}
   fields = this.forms.evaluate([
-    this.factory.username().class(["col-6"]),
-    this.factory.password().class(["col-6"]),
-    this.factory.confirmPassword().class(["col-6"]),
-    this.factory.email().class(["col-6"]),
+    this.factory.username().class(['col-6']),
+    this.factory.password().class(['col-6']),
+    this.factory.confirmPassword().class(['col-6']),
+    this.factory.email().class(['col-6']),
+  ]);
+
+  loginFormFields = this.forms.evaluate([
+    this.factory.username().class(['col-8']),
+    this.factory.password().class(['col-8']),
   ]);
 }

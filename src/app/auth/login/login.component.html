@@ -1,1 +1,16 @@
-<p>login works!</p>
+<div class="container justify-content-center">
+  <mat-card class="container col-6">
+    <form class="row">
+      <formly-form
+        [fields]="formDef.loginFormFields"
+        [form]="form"
+        [model]="model"
+      ></formly-form>
+    </form>
+
+    <mat-card-actions>
+        <button mat-raised-button color="primary">Login</button>
+        <button mat-button>forgot password</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

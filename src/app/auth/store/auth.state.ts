@@ -43,7 +43,7 @@ export class AuthState {
 
   @Action(actions.AuthenticateUser)
   authenticateUser(ctx: Ctx, { payload }: actions.AuthenticateUser) {
-    
+    console.error("not implemented");
   }
 
   @Action(actions.SetCookie)

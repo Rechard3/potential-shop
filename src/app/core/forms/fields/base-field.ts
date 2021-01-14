@@ -39,8 +39,15 @@ export class BaseField {
 
     /** adds "validators" to the list of field sync validators */
     validate(validators: {[key: string]: FormlyInlineValidator}){
-        // ld.assign(this.config.validators, validators);
-        ld.set(this, "config.validators", validators);
+        // ld.set(this, "config.validators", validators);
+        ld.assign(this.config, {validators: {...ld.get(this.config, "validators", {}), ...validators}});
+        return this;
+    }
+
+    stdValidation(validators: string[]){
+        const oldValidation: string[] = ld.get(this, "config.validators.validation", []);
+        oldValidation.push(...validators);
+        ld.set(this, "config.validators.validation", oldValidation);
         return this;
     }
 

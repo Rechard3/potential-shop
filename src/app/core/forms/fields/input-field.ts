@@ -3,7 +3,7 @@ import { ld } from "../../utils/lodash.exports";
 import { BaseField } from "./base-field";
 import { FieldTypes } from "./field-types.enum";
 
-type InputType = "text" | "number" | "password" | "date" | "datetime";
+type InputType = "text" | "number" | "password" | "date" | "datetime" | "email";
 
 export class InputField extends BaseField{
     /**

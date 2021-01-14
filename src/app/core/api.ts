@@ -12,4 +12,7 @@ export class Api {
 
     static orderCart = [environment.server, "order", "confirm"].join("/");
     static orderFetchAll = [environment.server, "order", "history"].join("/");
+
+    /** url used to register a new user */
+    static authSignup = [environment.server, "auth", "signup"].join("/");
 }

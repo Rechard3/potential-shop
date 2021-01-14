@@ -1,13 +1,33 @@
-<mat-card class="container">
+<mat-card class="container col-8">
+  <div class="col-6 offset-3 mb-5">
+    <button
+      mat-raised-button
+      class="col-12"
+      style="background-color: #1877f2; color: #eee"
+      (click)="loginFacebook()"
+    >
+      <mat-icon>facebook</mat-icon>
+      Continue with Facebook
+    </button>
+  </div>
+  <mat-card class="m-2">
     <form class="col-12">
-        <formly-form
+      <formly-form
         class="row"
         [fields]="formDef.fields"
         [form]="form"
         [model]="model"
-        ></formly-form>
+      ></formly-form>
+      <div class="col-4"></div>
+      <button
+        type="button"
+        mat-raised-button
+        (click)="signUp()"
+        color="primary"
+        [disabled]="!form.valid"
+      >
+        Sign up
+      </button>
     </form>
-    <div class="col-12">
-        <p> form is {{form.status}}</p>
-    </div>
+  </mat-card>
 </mat-card>

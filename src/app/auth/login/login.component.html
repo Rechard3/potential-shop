@@ -1,16 +1,31 @@
 <div class="container justify-content-center">
-  <mat-card class="container col-6">
-    <form class="row">
-      <formly-form
-        [fields]="formDef.loginFormFields"
-        [form]="form"
-        [model]="model"
-      ></formly-form>
-    </form>
+  <mat-card class="container col-6 justify-content-center">
+    <div class="col-6 offset-3 mb-5">
+      <button
+        (click)="loginWithFacebook()"
+        mat-raised-button
+        class="col-12"
+        style="background-color: #1877f2; color: #eee"
+      >
+        <mat-icon>facebook</mat-icon>
+        Continue with Facebook
+      </button>
+    </div>
+    <mat-card class="m-2">
+      <form class="row">
+        <formly-form
+          [fields]="formDef.loginFormFields"
+          [form]="form"
+          [model]="model"
+        ></formly-form>
+      </form>
 
-    <mat-card-actions>
-        <button mat-raised-button color="primary">Login</button>
-        <button mat-button>forgot password</button>
-    </mat-card-actions>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="login()">
+          Login
+        </button>
+        <button mat-button (click)="forgotPassword()">forgot password</button>
+      </mat-card-actions>
+    </mat-card>
   </mat-card>
 </div>

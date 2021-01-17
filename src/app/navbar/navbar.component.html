@@ -1,14 +1,19 @@
 <div class="col-12">
   <nav mat-tab-nav-bar fxLayout="row">
-    <a
-      mat-tab-link
-      *ngFor="let tab of tabs"
-      routerLinkActive
-      #rla="routerLinkActive"
-      [active]="rla.isActive"
-      [routerLink]="tab.path"
-    >
-      {{ tab.displayName }}
-    </a>
+    <ng-container *ngIf="!(authState | async).authenticated; else isLoggedIn">
+      <a
+        mat-tab-link
+        *ngFor="let tab of tabs"
+        routerLinkActive
+        #rla="routerLinkActive"
+        [active]="rla.isActive"
+        [routerLink]="tab.path"
+      >
+        {{ tab.displayName }}
+      </a>
+    </ng-container>
+    <ng-template #isLoggedIn>
+      <button mat-button (click)="logout()">Logout</button>
+    </ng-template>
   </nav>
 </div>

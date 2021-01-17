@@ -3,24 +3,25 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {NavbarComponent} from "./navbar/navbar.component";
+import { NavbarComponent } from './navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { NgxsModule } from '@ngxs/store';
 import { environment } from 'src/environments/environment';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ShopState } from './shop/store/shop.state';
 import { AdminState } from './admin/store/admin.state';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { AuthState } from './auth/store/auth.state';
-import { AgGridModule } from "ag-grid-angular";
+import { AgGridModule } from 'ag-grid-angular';
 import { AuthorInfoComponent } from './author-info/author-info.component';
 import { AboutComponent } from './about/about.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FooterComponent } from './footer/footer.component';
+import { ExpressSessionInterceptor } from './express-session.interceptor';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { FooterComponent } from './footer/footer.component';
     NavbarComponent,
     AuthorInfoComponent,
     AboutComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,14 +40,16 @@ import { FooterComponent } from './footer/footer.component';
     NgxsModule.forRoot([ShopState, AdminState, AuthState], {
       developmentMode: !environment.production,
     }),
-    NgxsReduxDevtoolsPluginModule.forRoot({disabled: environment.production}),
+    NgxsReduxDevtoolsPluginModule.forRoot({ disabled: environment.production }),
     ReactiveFormsModule,
     FormlyMaterialModule,
     FlexLayoutModule,
     NgxPermissionsModule.forRoot(),
     AgGridModule.forRoot(),
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ExpressSessionInterceptor, multi: true },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

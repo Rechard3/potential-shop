@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { NgxPermissionsService } from 'ngx-permissions';
 import { Observable, Subscription } from 'rxjs';
+import { concatAll, map, tap } from 'rxjs/operators';
 import { AuthActions } from './auth/store/auth.actions';
 import { AuthState, AuthStateModel } from './auth/store/auth.state';
 
@@ -20,7 +21,7 @@ export class AppComponent implements OnInit {
     { path: ['/', 'cart'], displayName: 'My eCart' },
   ];
 
-  activePath = "";
+  activePath = '';
   subscriptions = new Subscription();
   @Select(AuthState) auth: Observable<AuthStateModel>;
 
@@ -35,12 +36,15 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.store.dispatch(
-      new AuthActions.AuthenticateUser({ username: '', password: '' })
-    );
+    this.store
+      .dispatch(
+        new AuthActions.AuthenticateUser({ username: '', password: '' })
+      )
+      .subscribe((state) => {
+        debugger;
+      });
     this.store.select(AuthState.roles).subscribe((roles) => {
       this.permissions.loadPermissions(roles);
-    }); 
+    });
   }
-
 }

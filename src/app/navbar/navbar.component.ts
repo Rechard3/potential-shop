@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Select } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { AuthState, AuthStateModel } from '../auth/store/auth.state';
 
 @Component({
   selector: 'app-navbar',
@@ -14,7 +18,9 @@ export class NavbarComponent implements OnInit {
   ];
   activeLink = null;
 
-  constructor(public router: Router) {
+  @Select(AuthState) authState: Observable<AuthStateModel>;
+
+  constructor(public router: Router, private snackbar: MatSnackBar) {
   }
 
   isActive(link: string){
@@ -22,6 +28,10 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  logout(){
+    this.snackbar.open("Not implemented just yet", "OK", {duration: 3000});
   }
 
 }

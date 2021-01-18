@@ -7,9 +7,14 @@ import { CommonModule } from '@angular/common';
 import { HiddenComponent } from './fields/hidden/hidden.component';
 import { ConfigOption, FormlyModule } from '@ngx-formly/core';
 import { FieldTypes } from './fields/field-types.enum';
+import { InputComponent } from './fields/input/input.component';
+import { MaterialModule } from '../material/material.module';
 
 const config: ConfigOption = {
-  types: [{ name: FieldTypes.hidden, component: HiddenComponent }],
+  types: [
+    { name: FieldTypes.hidden, component: HiddenComponent },
+    { name: FieldTypes.input, component: InputComponent },
+  ],
   validationMessages: [
     { name: 'required', message: 'this field is required' },
     {
@@ -30,8 +35,13 @@ const config: ConfigOption = {
 };
 
 @NgModule({
-  declarations: [HiddenComponent],
-  imports: [CommonModule, FormlyModule.forChild(config)],
+  declarations: [HiddenComponent, InputComponent],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MaterialModule,
+    FormlyModule.forChild(config),
+  ],
   exports: [FormlyModule, NgFormsModule, ReactiveFormsModule],
 })
 export class FormsModule {}

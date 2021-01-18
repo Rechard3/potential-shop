@@ -36,15 +36,12 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.store
-      .dispatch(
-        new AuthActions.AuthenticateUser({ username: '', password: '' })
-      )
-      .subscribe((state) => {
-        debugger;
-      });
     this.store.select(AuthState.roles).subscribe((roles) => {
       this.permissions.loadPermissions(roles);
     });
+  }
+
+  registerActionHandlers(){
+    
   }
 }

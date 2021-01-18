@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BaseField } from 'src/app/core/forms/fields/base-field';
+import { InputField } from 'src/app/core/forms/fields/input-field';
 import { FormsService } from 'src/app/core/forms/forms.service';
 
 interface UserFormFields {
@@ -17,6 +18,7 @@ export class UserForm {
         .input('username')
         .label('Username')
         .placeholder('enter your username here')
+        .autocomplete("username")
         .required(true),
     email: () =>
       this.forms.field
@@ -25,6 +27,7 @@ export class UserForm {
         .placeholder('please type your email address in here')
         .type('email')
         .stdValidation(['email'])
+        .autocomplete("email")
         .required(true),
     password: () =>
       this.forms.field
@@ -59,6 +62,8 @@ export class UserForm {
 
   loginFormFields = this.forms.evaluate([
     this.factory.username().class(['col-8']),
-    this.factory.password().class(['col-8']),
+    (<InputField>this.factory.password().class(['col-8'])).autocomplete(
+      'current-password'
+    ),
   ]);
 }

@@ -2,6 +2,12 @@ import { User } from "src/app/models/user.model";
 
 
 export namespace AuthActions {
+
+    /** unauthorize the current user, send him to login page */
+    export class RouteUnauthorized {
+        static readonly type="[AUTH API] Unauthorized";
+    }
+
     /** set the user cookie, if cookie is not verified in backend, then redirect to */
     export class SetCookie {
         static readonly type="[AUTH INIT] set user cookie";

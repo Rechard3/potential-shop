@@ -15,4 +15,6 @@ export class Api {
 
     /** url used to register a new user */
     static authSignup = [environment.server, "auth", "signup"].join("/");
+    /** used to authenticate a user using credentials */
+    static authLogin = [environment.server, "auth", "login"].join("/");
 }

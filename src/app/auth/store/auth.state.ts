@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
+import produce from 'immer';
 import { tap } from 'rxjs/operators';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from '../auth.service';
@@ -34,7 +36,7 @@ export class AuthState {
   /**
    *
    */
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   @Selector()
   static roles(state: AuthStateModel) {
@@ -43,7 +45,17 @@ export class AuthState {
 
   @Action(actions.AuthenticateUser)
   authenticateUser(ctx: Ctx, { payload }: actions.AuthenticateUser) {
-    console.error("not implemented");
+    return this.authService.authenticate(payload).pipe(
+      tap((resp) => {
+        ctx.setState(
+          produce(ctx.getState(), (state) => {
+            state.authenticated = true;
+            state.user = resp.data;
+            return state;
+          })
+        );
+      })
+    );
   }
 
   @Action(actions.SetCookie)
@@ -58,5 +70,10 @@ export class AuthState {
         ctx.dispatch(new actions.AuthenticateUser(payload));
       })
     );
+  }
+
+  @Action(actions.RouteUnauthorized)
+  unAuthorizeUser(ctx: Ctx) {
+    return this.router.navigateByUrl('/auth/login');
   }
 }

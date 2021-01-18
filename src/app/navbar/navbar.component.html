@@ -1,6 +1,5 @@
 <div class="col-12">
   <nav mat-tab-nav-bar fxLayout="row">
-    <ng-container *ngIf="!(authState | async).authenticated; else isLoggedIn">
       <a
         mat-tab-link
         *ngFor="let tab of tabs"
@@ -11,7 +10,6 @@
       >
         {{ tab.displayName }}
       </a>
-    </ng-container>
     <ng-template #isLoggedIn>
       <button mat-button (click)="logout()">Logout</button>
     </ng-template>

@@ -27,6 +27,7 @@
     "@ngx-formly/material": "^5.0.0",
     "@ngx-formly/schematics": "^5.10.11",
     "@ngxs/devtools-plugin": "^3.7.1",
+    "@ngxs/router-plugin": "^3.7.1",
     "@ngxs/store": "^3.7.1",
     "@types/chart.js": "^2.9.29",
     "@types/lodash": "^4.14.167",

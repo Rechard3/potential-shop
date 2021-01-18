@@ -21,7 +21,8 @@ import { AuthorInfoComponent } from './author-info/author-info.component';
 import { AboutComponent } from './about/about.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FooterComponent } from './footer/footer.component';
-import { ExpressSessionInterceptor } from './express-session.interceptor';
+import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
+import { ExpressSessionInterceptor } from './interceptors/express-session.interceptor';
 
 @NgModule({
   declarations: [
@@ -45,10 +46,11 @@ import { ExpressSessionInterceptor } from './express-session.interceptor';
     FormlyMaterialModule,
     FlexLayoutModule,
     NgxPermissionsModule.forRoot(),
+    NgxsRouterPluginModule.forRoot(),
     AgGridModule.forRoot(),
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: ExpressSessionInterceptor, multi: true },
+    {provide: HTTP_INTERCEPTORS, useClass: ExpressSessionInterceptor, multi: true},
   ],
   bootstrap: [AppComponent],
 })
